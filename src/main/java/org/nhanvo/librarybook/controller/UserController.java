@@ -2,7 +2,7 @@ package org.nhanvo.librarybook.controller;
 
 import org.nhanvo.librarybook.domain.UserCreateForm;
 import org.nhanvo.librarybook.domain.validator.UserCreateFormValidator;
-import org.nhanvo.librarybook.service.user.UserService;
+import org.nhanvo.librarybook.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,18 +53,13 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") UserCreateForm form, BindingResult bindingResult) {
-        LOGGER.debug("Processing user create form={}, bindingResult={}", form, bindingResult);
         if (bindingResult.hasErrors()) {
-            // failed validation
             return "user_create";
         }
         try {
             userService.create(form);
         } catch (DataIntegrityViolationException e) {
-            // probably email already exists - very rare case when multiple admins are adding same user
-            // at the same time and form validation has passed for more than one of them.
-            LOGGER.warn("Exception occurred when trying to save the user, assuming duplicate email", e);
-            bindingResult.reject("email.exists", "Email already exists");
+           bindingResult.reject("email.exists", "Email already exists");
             return "user_create";
         }
         // ok, redirect

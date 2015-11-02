@@ -19,11 +19,13 @@
                 <button type="submit">Log out</button>
             </form>
         </li>
-        <li><a href="/user/${currentUser.id}">View myself</a></li>
+        <li><a href="/user/${currentUser.id}">View myself</a></li>  
+        <li><a href="/book/create">Create a new book</a></li>     
+        <li><a href="/books">View all books</a></li>
     </#if>
     <#if currentUser?? && currentUser.role == "ADMIN">
         <li><a href="/user/create">Create a new user</a></li>
-        <li><a href="/users">View all users</a></li>
+        <li><a href="/users">View all users</a></li>        
     </#if>
     </ul>
 </nav>

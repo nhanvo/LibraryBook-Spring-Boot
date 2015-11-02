@@ -1,4 +1,4 @@
-package org.nhanvo.librarybook.service.user;
+package org.nhanvo.librarybook.service;
 
 import java.util.Collection;
 import java.util.Optional;

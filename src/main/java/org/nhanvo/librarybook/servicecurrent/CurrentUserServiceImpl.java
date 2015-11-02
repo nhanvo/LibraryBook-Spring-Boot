@@ -1,4 +1,4 @@
-package org.nhanvo.librarybook.service.currentuser;
+package org.nhanvo.librarybook.servicecurrent;
 
 import org.nhanvo.librarybook.domain.CurrentUser;
 import org.nhanvo.librarybook.domain.Role;

@@ -1,4 +1,4 @@
-package org.nhanvo.librarybook.service.user;
+package org.nhanvo.librarybook.service;
 
 import org.nhanvo.librarybook.domain.User;
 import org.nhanvo.librarybook.domain.UserCreateForm;
@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
         user.setPasswordHash(new BCryptPasswordEncoder().encode(form.getPassword()));
         user.setRole(form.getRole());
         user.setFirstname(form.getFirstname());
-        user.setLastname(form.getLastname());
+        user.setLastname(form.getLastname());     
+        LOGGER.debug(user.getPasswordHash());
         return userRepository.save(user);
     }
 
