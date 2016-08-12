@@ -7,13 +7,6 @@ The application showing how to use Spring Boot with:
   * Spring Data JPA
   * H2 database engine
 
-
-* Customized login form
-* DAO-based authentication
-* Basic "remember me" authentication
-* URL-based security
-* Method-level security
-
 Reference from [Spring Boot Security Application](http://kielczewski.eu/2014/12/spring-boot-security-application/) article for
 commentary.
 
