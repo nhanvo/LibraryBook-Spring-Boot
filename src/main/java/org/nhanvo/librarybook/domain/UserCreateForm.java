@@ -4,26 +4,39 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * 
+ * @author nhanvo
+ * Create new user form class
+ */
 public class UserCreateForm {
-
+	// Email
     @NotEmpty
     private String email = "";
 
+    // Password
     @NotEmpty
     private String password = "";
 
+    // Password repeat
     @NotEmpty
     private String passwordRepeated = "";
 
+    // Role
     @NotNull
     private Role role = Role.USER;
 
+    // First name
     @NotEmpty
     private String firstname = "";
     
+    // Last name
     @NotEmpty
     private String lastname = "";
 
+    //=========================================================================
+    // Set and Get functions
+    //=========================================================================
     public String getLastname() {
 		return lastname;
 	}
@@ -83,5 +96,6 @@ public class UserCreateForm {
                 ", lastname=" + lastname +
                 '}';
     }
+    //=========================================================================
 
 }

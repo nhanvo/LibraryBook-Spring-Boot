@@ -1,17 +1,22 @@
 package org.nhanvo.librarybook.controller;
 
 import org.nhanvo.librarybook.domain.CurrentUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
+/**
+ * 
+ * @author nhanvo
+ * Current user controller
+ */
 @ControllerAdvice
 public class CurrentUserControllerAdvice {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUserControllerAdvice.class);
-
+	/**
+     * Define current user model
+     * @param authentication User authentication
+     * @return Null or principal
+     */
     @ModelAttribute("currentUser")
     public CurrentUser getCurrentUser(Authentication authentication) {
         return (authentication == null) ? null : (CurrentUser) authentication.getPrincipal();

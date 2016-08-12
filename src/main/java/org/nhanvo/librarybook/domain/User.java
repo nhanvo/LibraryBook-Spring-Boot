@@ -2,32 +2,45 @@ package org.nhanvo.librarybook.domain;
 
 import javax.persistence.*;
 
+/**
+ * 
+ * @author nhanvo
+ * User POJO class, mapping data to object from database by Hibernate
+ */
 @Entity
 @Table(name = "user")
 public class User {
 
+	// User Id, auto generate
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
+    // Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    // Password, will be hash code 
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
+    // Role
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
+    // First name
     @Column(name = "firstname", nullable = false)
     private String firstname;
     
+    // Last name
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
+    //=========================================================================
+  	// Get and Set function
+  	//=========================================================================
     public String getLastname() {
 		return lastname;
 	}
@@ -83,4 +96,5 @@ public class User {
                 ", lastname=" + lastname +
                 '}';
     }
+    //=========================================================================
 }

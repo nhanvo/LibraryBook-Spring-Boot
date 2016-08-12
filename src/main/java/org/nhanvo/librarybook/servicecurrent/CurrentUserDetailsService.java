@@ -10,17 +10,33 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/**
+ *
+ * @author nhanvo
+ * Current User detail service class
+ *
+ */
 @Service
 public class CurrentUserDetailsService implements UserDetailsService {
 
+	// Logger
     private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUserDetailsService.class);
+    
+    // User service
     private final UserService userService;
 
+    /**
+     * Constructor
+     * @param userService
+     */
     @Autowired
     public CurrentUserDetailsService(UserService userService) {
         this.userService = userService;
     }
 
+    /**
+     * Override from parent
+     */
     @Override
     public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
         LOGGER.debug("Authenticating user with email={}", email.replaceFirst("@.*", "@***"));

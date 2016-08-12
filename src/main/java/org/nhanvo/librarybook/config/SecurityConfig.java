@@ -14,34 +14,47 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+/**
+ * Security config for access application
+ */
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
-
+    /**
+     * Override configure function
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        		.authorizeRequests()
-	                .antMatchers("/", "/public/**").permitAll()
-	                .antMatchers("/users/**").hasAuthority("ADMIN")
-	                .anyRequest().fullyAuthenticated()
-                .and()
-                .formLogin()
-	                .loginPage("/login")
-	                .failureUrl("/login?error")
-	                .usernameParameter("email")
-	                .permitAll()
-                .and()
-                .logout()
-	                .logoutUrl("/logout")
-	                .deleteCookies("remember-me")
-	                .logoutSuccessUrl("/")
-	                .permitAll()
-                .and()
-                .rememberMe();
+            // Admin rule
+    		.authorizeRequests()
+                .antMatchers("/", "/public/**").permitAll()
+                .antMatchers("/users/**").hasAuthority("ADMIN")
+                .anyRequest().fullyAuthenticated()
+            .and()
+
+            // when user login
+            .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .usernameParameter("email")
+                .permitAll()
+            .and()
+
+            // when user logout
+            .logout()
+                .logoutUrl("/logout")
+                .deleteCookies("remember-me")
+                .logoutSuccessUrl("/")
+                .permitAll()
+            .and()
+            .rememberMe();
     }
 
+    /**
+     * Override configure function
+     */
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth

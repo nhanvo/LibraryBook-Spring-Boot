@@ -1,4 +1,6 @@
+<#-- @ftlvariable name="_csrf" type="org.springframework.security.web.csrf.CsrfToken" -->
 <#-- @ftlvariable name="books" type="java.util.List<org.nhanvo.librarybook.domain.Book>" -->
+<#-- @ftlvariable name="form" type="org.nhanvo.librarybook.domain.BookCreateForm" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +37,11 @@
         <td>${book.createdAt}</td>
         <td>${book.updateAt}</td>
         <td><a href="/book/edit/${book.id}">Edit</a></td>
-        <td><a href="/book/edit/${book.id}">Delete</a></td>
+        <td>
+            <form role="form" name="form" action="/book/delete/${book.id}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
     </tr>
     </#list>
     </tbody>

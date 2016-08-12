@@ -5,6 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
+/**
+ * 
+ * @author nhanvo
+ * Book repository class, inheritance from JPA repository
+ */
 public interface BookRepository extends JpaRepository<Book, Long>{
+	/**
+	 * Find one book by author 
+	 * @param author Author name
+	 * @return
+	 */
 	Optional<Book> findOneByAuthor(String author);
 }

@@ -16,7 +16,7 @@
 
 <h1>Edit book</h1>
 
-<form role="form" name="form" action="" method="post">
+<form role="form" name="form" action="/book/edit/${book.id}" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     <div>

@@ -1,31 +1,36 @@
 package org.nhanvo.librarybook.domain;
 
-import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+/**
+ * 
+ * @author nhanvo
+ * Book create form class
+ */
 public class BookCreateForm {
-	
+	// Title of book
 	@NotEmpty
 	private String title = "";
 	
+	// Author of book
 	@NotEmpty
 	private String author = "";
 	
+	// Description of book
 	@NotEmpty
 	private String description = "";
 	
+	// Date created of book
 	@NotEmpty	
 	private String createdat;
 	
+	// Data updated of book
 	@NotEmpty 	
 	private String updateat;
 	
+	//=========================================================================
+	// Get and Set functions
+	//=========================================================================
 	public String getTitle() {
 		return title;
 	}
@@ -65,4 +70,5 @@ public class BookCreateForm {
 	public void setUpdateat(String updateat) {
 		this.updateat = updateat;
 	}
+	//=========================================================================
 }

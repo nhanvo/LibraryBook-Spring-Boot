@@ -7,37 +7,59 @@ import java.util.Optional;
 
 import org.nhanvo.librarybook.domain.Book;
 import org.nhanvo.librarybook.domain.BookCreateForm;
+import org.nhanvo.librarybook.domain.BookEditForm;
 import org.nhanvo.librarybook.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+/**
+ * 
+ * @author nhanvo
+ * Book service implement class
+ * 
+ */
 @Service
 public class BookServiceImpl implements BookService{
-
+	// Book repository
 	private final BookRepository bookRepository;
 	
+	/**
+	 * Constructor
+	 * @param bookRepository
+	 */
 	@Autowired
 	public BookServiceImpl(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
 	
+	/**
+	 * Override from parent
+	 */
 	@Override
 	public Optional<Book> getBookById(long id) {
 		return Optional.ofNullable(bookRepository.findOne(id));
 	}
 
+	/**
+	 * Override from parent
+	 */
 	@Override
 	public Optional<Book> getBookByAuthor(String author) {		
 		return bookRepository.findOneByAuthor(author);
 	}
 
+	/**
+	 * Override from parent
+	 */
 	@Override
 	public Collection<Book> getAllBooks() {
 		return bookRepository.findAll(new Sort("author"));
 	}	
 
-	
+	/**
+	 * Override from parent
+	 */
 	@Override
 	public Book create(BookCreateForm form) {
 		Book book = new Book();
@@ -55,8 +77,11 @@ public class BookServiceImpl implements BookService{
 		return bookRepository.save(book);
 	}
 
+	/**
+	 * Override from parent
+	 */
 	@Override
-	public Book editBook(BookCreateForm form, Long id) {
+	public Book editBook(BookEditForm form, Long id) {
 		Book book = bookRepository.findOne(id);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		book.setTitle(form.getTitle());
@@ -72,6 +97,9 @@ public class BookServiceImpl implements BookService{
 		return bookRepository.save(book);
 	}
 
+	/**
+	 * Override from parent
+	 */
 	@Override
 	public Boolean deleteBook(Long id) {		
 		Book book = bookRepository.findOne(id);
